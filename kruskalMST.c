@@ -8,9 +8,9 @@ typedef struct {ll u, v, w;} ppp;
 p vertex[N];
 pp mst[N];
 ppp edge[N];
-ll n, m, ind, u, v, w;
+ll n, m, ind;
 int comp(const void *a, const void *b){
-    ppp aa=*(const ppp *)a, bb=*(const ppp *)b;
+    aa=*(const ppp *)a, bb=*(const ppp *)b;
 	return (aa.w<bb.w?-1:(aa.w>bb.w?1:0));
 }
 void makeset(ll val){
@@ -35,7 +35,7 @@ void merge(ll a, ll b){
 			vertex[roota].parent=rootb;
 			vertex[rootb].rank++;
 		}
-	}	
+	}
 }
 void kruskalMST(void){
     for (ll i=1; i<=n; i++)
