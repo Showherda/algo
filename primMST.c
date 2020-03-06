@@ -8,7 +8,7 @@ typedef struct _list{
     pair p;
     struct _list *next;
 } list;
-bool taken[N], vis[N];
+bool taken[N];
 list *g[N];
 ll n, m, u, v, w, size, mstCost;
 pair pq[N];
@@ -55,13 +55,7 @@ void pushg(ll u, ll v, ll w){
     ptr->p.w=w;
     g[u]=ptr;
 }
-int main(){
-    scanf("%lld%lld", &n, &m);
-    while (m--){
-        scanf("%lld%lld%lld", &u, &v, &w);
-        pushg(v, u, w);
-        pushg(u, v, w);
-    }
+void primMST(void){
     process(1);
     while (size){
         pair front=extract_min();
@@ -71,5 +65,4 @@ int main(){
             process(u);
         }
     }
-    printf("%lld\n", mstCost);
 }
