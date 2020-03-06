@@ -14,7 +14,7 @@ int comp(const void *a, const void *b){
 	return (aa.w<bb.w?-1:(aa.w>bb.w?1:0));
 }
 void makeset(ll val){
-	vertex[val].parent=vall;
+	vertex[val].parent=val;
 	vertex[val].rank=1;
 }
 ll find(ll val){
