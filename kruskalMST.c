@@ -8,7 +8,7 @@ typedef struct {ll u, v, w;} ppp;
 p vertex[N];
 pp mst[N];
 ppp edge[N];
-ll n, m, ind;
+ll n, m, ind, minweight;
 int comp(const void *a, const void *b){
     ppp aa=*(const ppp *)a, bb=*(const ppp *)b;
 	return (aa.w<bb.w?-1:(aa.w>bb.w?1:0));
@@ -45,6 +45,7 @@ void kruskalMST(void){
         if (find(edge[i].u)!=find(edge[i].v)){
             mst[ind].u=edge[i].u, mst[ind].v=edge[i].v;
             ind++;
+            minweight+=edge[i].w;
             merge(edge[i].u, edge[i].v);
         }
 }
