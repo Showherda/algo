@@ -10,7 +10,7 @@ pp mst[N];
 ppp edge[N];
 ll n, m, ind;
 int comp(const void *a, const void *b){
-    aa=*(const ppp *)a, bb=*(const ppp *)b;
+    ppp aa=*(const ppp *)a, bb=*(const ppp *)b;
 	return (aa.w<bb.w?-1:(aa.w>bb.w?1:0));
 }
 void makeset(ll val){
