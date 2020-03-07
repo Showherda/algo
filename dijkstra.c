@@ -11,7 +11,7 @@ typedef struct _list{
     struct _list *next;
 } list;
 list *g[N];
-ll n, m, u, v, w, size, dist[N];
+ll n, m, a, b, w, size, dist[N], prev[N];
 pair pq[N];
 void min_heapify(ll ind){
     ll l=ind*2, r=l+1, lowest=ind;
@@ -50,25 +50,18 @@ void pushg(ll u, ll v, ll w){
     ptr->p.w=w;
     g[u]=ptr;
 }
-int main(){
-    scanf("%lld%lld", &n, &m);
+void dijkstra(void){
     for (ll i=1; i<=n; i++)
         dist[i]=LLONG_MAX;
-    while (m--){
-        scanf("%lld%lld%lld", &a, &b, &w);
-        pushg(a, b, w);
-        pushg(b, a, w);
-    }
     pushh(1, 0);
     while (size){
         pair p=extract_min();
-        ll d=p.w, u=p.v;
-        if (d>dist[u])
-            continue;
+        ll u=p.v;
         for (list *a=g[u]; a; a=a->next){
             pair v=a->p;
             if (dist[u]+v.w<dist[v.v]){
                 dist[v.v]=dist[u]+v.w;
+                prev[v.v]=u;
                 pushh(v.v, v.w);
             }
         }
