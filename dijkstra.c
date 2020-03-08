@@ -11,9 +11,11 @@ typedef struct _list{
     struct _list *next;
 } list;
 list *g[N];
-ll n, m, a, b, w, size, dist[N], prev[N];
+ll n, m, u, v, w, size, dist[N], prev[N];
 pair pq[N];
 void min_heapify(ll ind){
+    if (!ind)
+        return;
     ll l=ind*2, r=l+1, lowest=ind;
     if (l<=size&&(pq[l].v<pq[ind].v||pq[l].w<pq[ind].w))
         lowest=l;
@@ -26,11 +28,7 @@ void min_heapify(ll ind){
         min_heapify(lowest);
     }
 }
-void build_min_heap(void){
-    for (ll i=size/2; i; i--)
-        min_heapify(i);
-}
-pair extract_min(void){
+pair top(void){
     pair min=pq[1];
     pq[1]=pq[size];
     size--;
@@ -41,7 +39,7 @@ void pushh(ll v, ll w){
     ++size;
     pq[size].v=v;
     pq[size].w=w;
-    build_min_heap();
+    min_heapify(size/2);
 }
 void pushg(ll u, ll v, ll w){
     list *ptr=(list *) malloc(sizeof(list));
@@ -50,19 +48,20 @@ void pushg(ll u, ll v, ll w){
     ptr->p.w=w;
     g[u]=ptr;
 }
-void dijkstra(void){
+void dijkstra(ll s){
     for (ll i=1; i<=n; i++)
         dist[i]=LLONG_MAX;
+    dist[s]=0;
     pushh(1, 0);
     while (size){
-        pair p=extract_min();
+        pair p=top();
         ll u=p.v;
         for (list *a=g[u]; a; a=a->next){
             pair v=a->p;
             if (dist[u]+v.w<dist[v.v]){
                 dist[v.v]=dist[u]+v.w;
                 prev[v.v]=u;
-                pushh(v.v, v.w);
+                pushh(v.v, w);
             }
         }
     }
