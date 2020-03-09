@@ -11,7 +11,7 @@ typedef struct _list{
     struct _list *next;
 } list;
 list *g[N];
-ll n, m, u, v, w, dist[N], prev[N], flag;
+ll n, m, u, v, w, dist[N], prev[N], negcyc;
 void pushg(ll u, ll v, ll w){
     list *ptr=(list *) malloc(sizeof(list));
     ptr->next=g[u];
@@ -42,7 +42,7 @@ void BFcheck(void){
                 u=j; v=a->p.v; w=a->p.w;
                 if (dist[u]+w<dist[v]){
                     dist[v]=LLONG_MIN;
-                    flag=0;
+                    negcyc=1;
                 }
             }
 }
