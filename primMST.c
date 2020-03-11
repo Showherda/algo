@@ -25,10 +25,6 @@ void min_heapify(ll ind){
         min_heapify(lowest);
     }
 }
-void build_min_heap(void){
-    for (ll i=size/2; i; i--)
-        min_heapify(i);
-}
 pair extract_min(void){
     pair min=pq[1];
     pq[1]=pq[size];
@@ -40,7 +36,7 @@ void pushh(ll v, ll w){
     ++size;
     pq[size].v=v;
     pq[size].w=w;
-    min_heapify(size);
+    min_heapify(size/2);
 }
 void process(ll vrtx){
     taken[vrtx]=1;
