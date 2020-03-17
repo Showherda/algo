@@ -22,11 +22,13 @@ void build(ll tv, ll tl, ll tr)
 }
 ll query(ll v, ll tl, ll tr, ll l, ll r)
 {
-    if (l>r) return LLONG_MAX;
-    if (l==tl&&r==tr) return tree[v];
+    if (tl>r||tr<l)
+        return LLONG_MAX;
+    if (tl>=l&&tr<=r)
+        return tree[v];
     ll tm=(tl+tr)/2;
-    return min(query(v*2, tl, tm, l, min(r, tm)),
-               query(v*2+1, tm+1, tr, max(l, tm+1), r));
+    return min(query(v*2, tl, tm, l, r),
+               query(v*2+1, tm+1, tr, l, r));
 }
 void update(ll v, ll tl, ll tr, ll pos, ll new_val)
 {
@@ -36,10 +38,6 @@ void update(ll v, ll tl, ll tr, ll pos, ll new_val)
         ll tm=(tr+tl)/2;
         if (pos<=tm) update(v*2, tl, tm, pos, new_val);
         else update(v*2+1, tm+1, tr, pos, new_val);
-        tree[v]=min(tree[v*2],tree[v*2+1]);
+        tree[v]=min(tree[v*2], tree[v*2+1]);
     }
-}
-int main()
-{
-
 }
