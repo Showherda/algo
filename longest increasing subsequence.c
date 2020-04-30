@@ -29,7 +29,7 @@ void longest_increasing_subsequence(void){
 void output(int val){
     if (val==-1)
         return;
-    if (val!=-1)
+    else
         output(res[val]);
     printf("%d ", inp[val]);
 }
