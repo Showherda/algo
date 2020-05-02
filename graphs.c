@@ -9,10 +9,9 @@ list *g[5555];
 int n, m, s, u, v;
 void add(int val, int dst)
 {
-    list *ptr=(list *) malloc(sizeof(list)), *tmp=g[val];
+    list *ptr=(list *) malloc(sizeof(list));
     ptr->val=dst;
-    if (tmp) ptr->next=tmp;
-    else ptr->next=NULL;
+    ptr->next=g[val];
     g[val]=ptr;
 }
 void display(int val)
