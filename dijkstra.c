@@ -61,7 +61,7 @@ void dijkstra(ll s){
             if (dist[u]+v.w<dist[v.v]){
                 dist[v.v]=dist[u]+v.w;
                 prev[v.v]=u;
-                pushh(v.v, w);
+                pushh(v.v, dist[v.v]);
             }
         }
     }
