@@ -73,8 +73,6 @@ class Node:
 				if self.right:
 					self.right=self.right.delete(val)
 		return self
-	def query(self, val, k):
-
 	def inorder(self):
 		if self.left:
 			self.left.inorder()
