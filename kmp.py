@@ -4,6 +4,8 @@ MI=lambda:map(int, sys.stdin.readline().strip('\n').split())
 SI=lambda:sys.stdin.readline().strip('\n')
 II=lambda:int(sys.stdin.readline().strip('\n'))
 
+# this is kmp/solution to timus 1423
+
 n=II()
 s, t=SI(), SI()							# match t in 2*s
 s*=2
