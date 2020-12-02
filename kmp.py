@@ -5,7 +5,7 @@ SI=lambda:sys.stdin.readline().strip('\n')
 II=lambda:int(sys.stdin.readline().strip('\n'))
 
 n=II()
-s, t=SI(), SI()						# match t in 2*s
+s, t=SI(), SI()							# match t in 2*s
 s*=2
 lps=[0]*n							# longest prefix that is also a suffix
 j=0
